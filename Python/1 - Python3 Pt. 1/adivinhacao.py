@@ -22,7 +22,8 @@ def jogar():
 
     numero_maximo = 100
     
-    nivel = int(input('Defina o nível: '))
+    try: nivel = int(input('Defina o nível: '))
+    except: nivel = 3
     print('\n', end='')
 
     if nivel == 1: tentativas = 20
