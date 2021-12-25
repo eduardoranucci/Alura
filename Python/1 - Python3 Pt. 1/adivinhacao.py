@@ -21,7 +21,7 @@ def jogar():
     print('Qual nível de dificuldade?', f'\n\n{cores["verde"]}(1) Fácil {cores["amarelo"]}(2) Médio {cores["vermelho"]}(3) Difícil {cores["roxo"]}(4) Personalizado{cores["reset"]}', end='\n\n')
 
     numero_maximo = 100
-
+    
     nivel = int(input('Defina o nível: '))
     print('\n', end='')
 
@@ -30,8 +30,12 @@ def jogar():
     elif nivel == 3: tentativas = 5
     elif nivel == 4:
         
-        numero_maximo = int(input('Defina o número máximo aleatório: '))
-        tentativas = int(input('Defina o número de tentativas: '))
+        print('Deixe em branco para selecionar o padrão.', end='\n\n')
+        
+        try: numero_maximo = int(input('Defina o número máximo aleatório (Padrão: 100): '))   
+        except: numero_maximo = 100
+        try: tentativas = int(input('Defina o número de tentativas (Padrão: 5): '))
+        except: tentativas = 5
         
     else: tentativas = 5
 
@@ -56,7 +60,7 @@ def jogar():
 
         if acertou: 
             
-            print(f'\n{cores["verde_negrito"]}Você acertou!{cores["reset"]} e fez {pontos}!', end='\n\n')
+            print(f'\n{cores["verde_negrito"]}Você acertou!{cores["reset"]} e fez {pontos} pontos!', end='\n\n')
             break
 
         else: 
