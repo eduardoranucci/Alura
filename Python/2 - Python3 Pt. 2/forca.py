@@ -1,7 +1,6 @@
 
-
 def jogar():
-    
+
     cores = {
         'reset': '\033[m',
         'vermelho': '\033[0;31m',
@@ -13,7 +12,7 @@ def jogar():
         'amarelo': '\033[0;33m'
     }
 
-    print('-~-'*10, f'-~-~-~  {cores["azul"]}Jogo da Forca!{cores["reset"]}  ~-~-~-', '-~-'*10, sep='\n', end='\n\n')
+    print('-~- ' * 10, f'-~-~-~  {cores["azul"]}Jogo da Forca!{cores["reset"]}  ~-~-~-', '-~- ' * 10, sep='\n', end='\n\n')
 
     palavra_secreta = 'banana'
     enforcou = False
@@ -28,9 +27,9 @@ def jogar():
             if chute.upper() == letra.upper():
                 print(f'Encontrei a letra {cores["sublinhado"]}{chute.upper()}{cores["reset"]} na posição {i}.')
             i += 1
-    
-    print('-~-'*10, f'-~-~-~-  {cores["azul"]}Fim de jogo!{cores["reset"]}  -~-~-~-', '-~-'*10, sep='\n')
-    
+
+    print('-~- ' * 10, f'-~-~-~-  {cores["azul"]}Fim de jogo!{cores["reset"]}  -~-~-~-', '-~- ' * 10, sep='\n')
+
 
 if __name__ == '__main__':
     jogar()
