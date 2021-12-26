@@ -3,13 +3,13 @@
 def jogar():
     
     cores = {
-        'reset':'\033[m',
-        'vermelho':'\033[0;31m',
-        'vermelho_erro':'\033[1;31m',
-        'verde':'\033[0;32m',
-        'verde_negrito':'\033[1;32m',
-        'sublinhado':'\033[4;37m',
-        'azul':'\033[0;36m',
+        'reset': '\033[m',
+        'vermelho': '\033[0;31m',
+        'vermelho_erro': '\033[1;31m',
+        'verde': '\033[0;32m',
+        'verde_negrito': '\033[1;32m',
+        'sublinhado': '\033[4;37m',
+        'azul': '\033[0;36m',
         'amarelo': '\033[0;33m'
     }
 
