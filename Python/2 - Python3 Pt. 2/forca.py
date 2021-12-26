@@ -1,3 +1,5 @@
+from random import randint
+
 
 def jogar():
 
@@ -12,7 +14,18 @@ def jogar():
     print('-~- ' * 10, f'-~-~-~-~-~  {cores["azul"]}-Jogo da Forca-{cores["reset"]}  ~-~-~-~-~-', '-~- ' * 10, sep='\n',
           end='\n\n')
 
-    palavra_secreta = 'banana'.upper()
+    arquivo = open('palavras.txt', 'r', encoding='UTF-8')
+    palavras = []
+
+    for linha in arquivo:
+        linha = linha.strip()
+        palavras.append(linha)
+
+    arquivo.close()
+
+    numero = randint(0, len(palavras))
+    palavra_secreta = palavras[numero].upper()
+
     letras_acertadas = ['_' for letra in palavra_secreta]
     enforcou = False
     acertou = False
