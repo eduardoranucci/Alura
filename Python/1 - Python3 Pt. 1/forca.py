@@ -18,4 +18,5 @@ def jogar():
     print('-~-'*10, f'-~-~-~-  {cores["azul"]}Fim de jogo!{cores["reset"]}  -~-~-~-', '-~-'*10, sep='\n')
     
 
-if __name__ == '__main__': jogar()
+if __name__ == '__main__': 
+    jogar()
