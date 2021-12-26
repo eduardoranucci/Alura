@@ -4,40 +4,51 @@ def jogar():
     cores = {
         'reset': '\033[m',
         'vermelho': '\033[0;31m',
-        'vermelho_erro': '\033[1;31m',
-        'verde': '\033[0;32m',
         'verde_negrito': '\033[1;32m',
         'sublinhado': '\033[4m',
-        'azul': '\033[0;36m',
-        'amarelo': '\033[0;33m'
+        'azul': '\033[0;36m'
     }
 
-    print('-~- ' * 10, f'-~-~-~-~-~  {cores["azul"]}-Jogo da Forca-{cores["reset"]}  ~-~-~-~-~-', '-~- ' * 10, sep='\n', end='\n\n')
+    print('-~- ' * 10, f'-~-~-~-~-~  {cores["azul"]}-Jogo da Forca-{cores["reset"]}  ~-~-~-~-~-', '-~- ' * 10, sep='\n',
+          end='\n\n')
 
-    palavra_secreta = 'banana'
-    letras_acertadas = []
+    palavra_secreta = 'banana'.upper()
+    letras_acertadas = ['_' for letra in palavra_secreta]
     enforcou = False
     acertou = False
-
-    for letras in palavra_secreta:
-        letras_acertadas.append('_')
+    tentativas = 6
 
     print(letras_acertadas, end='\n\n')
 
     while not enforcou and not acertou:
 
-        chute = input('Qual letra? ').strip()
+        chute = input('Qual letra? ').strip().upper()
 
-        i = 0
-        for letra in palavra_secreta:
-            if chute.upper() == letra.upper():
-                letras_acertadas[i] = letra
-            i += 1
+        if chute in palavra_secreta:
+            i = 0
+            for letra in palavra_secreta:
+                if chute == letra:
+                    letras_acertadas[i] = letra
+                i += 1
+        else:
+            tentativas -= 1
+            if tentativas == 0:
+                pass
+            else:
+                print(f'\n{cores["vermelho"]}Você errou, faltam {tentativas} tentativas.{cores["reset"]}')
+
+        enforcou = tentativas == 0
+        acertou = '_' not in letras_acertadas
 
         print('\n', end='')
         print(letras_acertadas, end='\n\n')
 
-    print('-~- ' * 10, f'-~-~-~-  {cores["azul"]}Fim de jogo!{cores["reset"]}  -~-~-~-', '-~- ' * 10, sep='\n')
+    if acertou:
+        print(f'{cores["verde_negrito"]}Você ganhou!{cores["reset"]}', end='\n\n')
+    else:
+        print(f'{cores["vermelho"]}Você perdeu!{cores["reset"]}', end='\n\n')
+
+    print('-~-' * 10, f'-~-~-~-  {cores["azul"]}Fim de jogo!{cores["reset"]}  -~-~-~-', '-~-' * 10, sep='\n')
 
 
 if __name__ == '__main__':
