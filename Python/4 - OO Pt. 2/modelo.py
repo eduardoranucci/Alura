@@ -46,14 +46,43 @@ class Serie(Programa):
         return f'Nome: {self._nome} - Ano: {self.ano} - Temporadas: {self.temporadas} - Likes: {self._likes}'
 
 
+class Playlist:
+
+    def __init__(self, nome, programas):
+        self.nome = nome
+        self._programas = programas
+
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        return len(self._programas)
+
+
 matrix = Filme('matrix', 2018, 160)
-matrix.dar_like()
-
 the_office = Serie('the office', 2005, 9)
+tmep = Filme('Todo mundo em pânico', 1999, 100)
+demolidor = Serie('Demolidor', 2016, 2)
+
+matrix.dar_like()
+matrix.dar_like()
+matrix.dar_like()
+matrix.dar_like()
+tmep.dar_like()
+tmep.dar_like()
+demolidor.dar_like()
+demolidor.dar_like()
+the_office.dar_like()
 the_office.dar_like()
 the_office.dar_like()
 
-filmes_e_series = [matrix, the_office]
+filmes_e_series = [matrix, the_office, demolidor, tmep]
 
-for programa in filmes_e_series:
+playlist_fim_de_semana = Playlist('Fim de semana', filmes_e_series)
+
+print(f'Tamanho da Playlist: {len(playlist_fim_de_semana.listagem)}')
+
+for programa in playlist_fim_de_semana.listagem:
     print(programa)
