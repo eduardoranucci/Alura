@@ -52,13 +52,15 @@ class Playlist:
         self.nome = nome
         self._programas = programas
 
+    def __getitem__(self, item):
+        return self._programas[item]
+
+    def __len__(self):
+        return len(self._programas)
+
     @property
     def listagem(self):
         return self._programas
-
-    @property
-    def tamanho(self):
-        return len(self._programas)
 
 
 matrix = Filme('matrix', 2018, 160)
@@ -82,7 +84,7 @@ filmes_e_series = [matrix, the_office, demolidor, tmep]
 
 playlist_fim_de_semana = Playlist('Fim de semana', filmes_e_series)
 
-print(f'Tamanho da Playlist: {len(playlist_fim_de_semana.listagem)}')
+print(f'Tamanho da Playlist: {len(playlist_fim_de_semana)}')
 
-for programa in playlist_fim_de_semana.listagem:
+for programa in playlist_fim_de_semana:
     print(programa)
