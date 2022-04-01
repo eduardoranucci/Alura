@@ -1,8 +1,17 @@
-try:
-    with open('contatos.csv') as arquivo_contato:
+import contatos_utils
 
-        for linha in arquivo_contato:
-            print(linha, end='')
+try:
+
+    # contatos = contatos_utils.csv_para_contatos('contatos.csv')
+    # contatos_utils.contatos_para_pickle(contatos, 'contatos.pickle')
+
+    # contatos = contatos_utils.pickle_para_contatos('contatos.pickle')
+    # contatos_utils.contatos_para_json(contatos, 'contatos.json')
+
+    contatos = contatos_utils.json_para_contatos('contatos.json')
+
+    for contato in contatos:
+        print(f'{contato.id} - {contato.nome} - {contato.email}')
 
 except FileNotFoundError:
     print('Arquivo não encontrado.')
