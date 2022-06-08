@@ -1,5 +1,5 @@
 from pprint import pprint
-
+from exceptions import OperacaoFinanceiraError, SaldoInsuficienteError
 
 class Cliente:
 
@@ -22,6 +22,8 @@ class ContaCorrente:
         self.__saldo = 100
         self.__agencia = 0
         self.__numero = 0
+        self.saques_nao_permitidos = 0
+        self.transferencias_nao_permitidas = 0
 
         self.cliente = cliente
         self.__set_agencia(agencia)
@@ -49,8 +51,6 @@ class ContaCorrente:
     def __set_numero(self, valor):
         if not isinstance(valor, int):
             raise ValueError('Numero deve ser um inteiro.')
-        if valor <= 0:
-            raise ValueError('Numero deve ser maior que zero.')
 
         self.__numero = valor
 
@@ -67,13 +67,27 @@ class ContaCorrente:
         self.__saldo = valor
 
     def transferir(self, valor, favorecido):
+        if valor < 0:
+            raise ValueError('O valor não pode ser menor que zero.')
+        try:
+            self.sacar(valor)
+        except SaldoInsuficienteError as E:
+            self.transferencias_nao_permitidas += 1
+            E.args = ()
+            raise OperacaoFinanceiraError('Operação não finalizada.') from E
+
         favorecido.depositar(valor)
 
     def sacar(self, valor):
-        self.saldo -= valor
+        if valor < 0:
+            raise ValueError('O valor não pode ser menor que zero.')
+        if self.saldo < valor:
+            self.saques_nao_permitidos += 1
+            raise SaldoInsuficienteError(saldo=self.saldo, valor=valor)
+        self.__saldo -= valor
 
     def depositar(self, valor):
-        self.saldo += valor
+        self.__saldo += valor
 
 
 def main():
@@ -84,18 +98,24 @@ def main():
         try:
             nome = input('Nome do cliente: ')
             agencia = int(input('Número da agência: '))
+            breakpoint()
             numero = int(input('Número da conta corrente: '))
             cliente = Cliente(nome, None, None)
             conta_corrente = ContaCorrente(cliente, agencia, numero)
             contas.append(conta_corrente)
             print()
-        except ValueError as E:
-            print(type(E.args[1]))
-            exit()
         except KeyboardInterrupt:
             print(f'\n\n{len(contas)}(s) contas criadas')
             exit()
 
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+#    main()
+
+cc1 = ContaCorrente(None, 400, 1234567)
+cc2 = ContaCorrente(None, 401, 1234568)
+
+cc1.transferir(101, cc2)
+
+print(cc1.saldo)
+print(cc2.saldo)
