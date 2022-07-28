@@ -1,4 +1,4 @@
-from PhonesBr import PhonesBr
+from DatasBr import DatasBr
 
-number = PhonesBr('554195118802')
-print(number)
+register = DatasBr()
+print(register.register_time())
