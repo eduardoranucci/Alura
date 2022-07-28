@@ -267,4 +267,8 @@ def analisa_frequencia_de_letras(texto):
 
 analisa_frequencia_de_letras(texto1)
 
+<<<<<<< HEAD
 analisa_frequencia_de_letras(texto2)
+=======
+analisa_frequencia_de_letras(texto2)
+>>>>>>> 32b7d5a6b7bc21f564eec73ca071ae4cf8208acd
