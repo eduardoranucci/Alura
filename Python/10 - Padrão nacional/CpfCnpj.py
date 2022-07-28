@@ -58,3 +58,4 @@ class DocCnpj():
     def format_cnpj(self):
         masker = CNPJ()
         return masker.mask(self.cnpj)
+

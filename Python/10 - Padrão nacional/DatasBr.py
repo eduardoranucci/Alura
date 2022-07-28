@@ -29,3 +29,4 @@ class DatasBr:
     def register_time(self):
         register_time = datetime.today() - self.register_moment
         return register_time
+

@@ -30,3 +30,4 @@ class PhonesBr:
         else:
             formatted_number = f'+{search.group(1)}({search.group(2)}){search.group(3)}-{search.group(4)}'
         return formatted_number 
+
