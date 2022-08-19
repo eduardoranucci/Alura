@@ -6,6 +6,7 @@ from receitas.models import Receita
 # Create your views here.
 
 def cadastro(request):
+    ''' Cadastra um novo usuário no sistema '''
 
     if request.method == 'POST':
 
@@ -39,6 +40,7 @@ def cadastro(request):
         return render(request, 'usuarios/cadastro.html')
 
 def login(request):
+    ''' Realiza o login de um usuário no sistema '''
 
     if request.method == 'POST':
 
@@ -66,7 +68,8 @@ def login(request):
         return render(request, 'usuarios/login.html')
 
 def dashboard(request):
-    
+    ''' Renderiza a dashboard do usuário '''
+
     if request.user.is_authenticated:
 
         id = request.user.id
@@ -81,12 +84,17 @@ def dashboard(request):
         return redirect('index')
 
 def logout(request):
-    
+    ''' Realiza o logout de um usuário '''
+
     auth.logout(request)
     return redirect('index')
 
 def campo_vazio(campo):
+    ''' Verifica se um campo é vazio '''
+
     return not campo.strip()
 
 def senhas_nao_sao_iguais(senha, senha2):
+    ''' Verifica se as senhas não são iguais '''
+
     return senha != senha2
