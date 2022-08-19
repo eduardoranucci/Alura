@@ -85,67 +85,6 @@ def logout(request):
     auth.logout(request)
     return redirect('index')
 
-def cria_receita(request):
-
-    if request.method == 'POST':
-        
-        nome = request.POST['nome_receita']
-        ingredientes = request.POST['ingredientes']
-        modo_preparo = request.POST['modo_preparo']
-        tempo_preparo = request.POST['tempo_preparo']
-        rendimento = request.POST['rendimento']
-        categoria = request.POST['categoria']
-        foto_receita = request.FILES['foto_receita']
-        user = get_object_or_404(User, pk=request.user.id)
-
-        receita = Receita(pessoa=user,
-                          nome_receita=nome,
-                          ingredientes=ingredientes,
-                          modo_preparo=modo_preparo,
-                          tempo_preparo=tempo_preparo,
-                          rendimento=rendimento,
-                          categoria=categoria,
-                          foto_receita=foto_receita)
-        receita.save()
-
-        return redirect('dashboard')
-
-    else:
-        return render(request, 'usuarios/cria_receita.html')
-
-def deleta_receita(request, receita_id):
-    
-    receita = get_object_or_404(Receita, pk=receita_id)
-    receita.delete()
-    return redirect('dashboard')
-
-def edita_receita(request, receita_id):
-
-    receita = get_object_or_404(Receita, pk=receita_id)
-    receita_a_editar = { 'receita': receita }
-    return render(request, 'usuarios/edita_receita.html', receita_a_editar)
-
-def atualiza_receita(request):
-    
-    if request.method == 'POST':
-        
-        receita_id = request.POST['receita_id']
-        receita = Receita.objects.get(pk=receita_id)
-
-        receita.nome_receita = request.POST['nome_receita']
-        receita.ingredientes = request.POST['ingredientes']
-        receita.modo_preparo = request.POST['modo_preparo']
-        receita.tempo_preparo = request.POST['tempo_preparo']
-        receita.rendimento = request.POST['rendimento']
-        receita.categoria = request.POST['categoria']
-
-        if 'foto_receita' in  request.FILES:
-            receita.foto_receita = request.FILES['foto_receita']
-
-        receita.save()
-
-        return redirect('dashboard')
-
 def campo_vazio(campo):
     return not campo.strip()
 
