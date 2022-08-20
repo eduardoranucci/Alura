@@ -20,8 +20,17 @@ def revisao(request):
 
         form = PassagemForm(request.POST)
 
-        ctx = {
-            'form' : form
-        }
+        if form.is_valid():
 
-        return render(request, 'revisao.html', ctx)
+            ctx = {
+                'form' : form
+            }
+
+            return render(request, 'revisao.html', ctx)
+        else:
+
+            ctx = {
+                'form' : form
+            }
+
+            return render(request, 'index.html', ctx)
