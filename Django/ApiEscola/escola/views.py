@@ -1,5 +1,5 @@
-from escola.models import Curso, Aluno
-from .serializer import CursoSerializer, AlunoSerializer
+from escola.models import Curso, Aluno, Matricula
+from .serializer import CursoSerializer, AlunoSerializer, MatriculaSerializer
 from rest_framework import viewsets
 
 # Create your views here.
@@ -21,3 +21,11 @@ class CursosViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
 
+
+class MatriculasViewSet(viewsets.ModelViewSet):
+    '''
+    Exibe todos as matrículas.
+    '''
+
+    queryset = Matricula.objects.all()
+    serializer_class = MatriculaSerializer
