@@ -1,9 +1,10 @@
-from rest_framework import serializers
-from clientes.models import Cliente
+import re
+from validate_docbr import CPF
 
 def cpf_valido(cpf):
 
-    return len(cpf) == 11
+    c = CPF()
+    return c.validate(cpf)
 
 def nome_valido(nome):
 
@@ -15,4 +16,7 @@ def rg_valido(rg):
 
 def celular_valido(celular):
 
-    return len(celular) < 11
+    modelo = '[0-9]{2} [0-9]{5}-[0-9]{4}'
+    resposta = re.findall(modelo, celular)
+
+    return resposta
