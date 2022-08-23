@@ -1,3 +1,4 @@
+from typing import List
 from urllib import request
 from rest_framework import viewsets, generics
 from escola.models import Aluno, Curso, Matricula
@@ -23,6 +24,7 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     """Listando todas as matrículas"""
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
+    http_method_names = ['get', 'post', 'put', 'patch']
 
 class ListaMatriculasAluno(generics.ListAPIView):
     """Listando as matrículas de um aluno ou aluna"""
