@@ -21,3 +21,15 @@ class TestClass:
         resultado = lucas.sobrenome()
         
         assert resultado == esperado
+        
+    def test_quando_decrescimo_salario_recebe_100000_deve_retornar_90000(self):
+        
+        entrada_salario = 100000
+        entrada_nome = 'Paulo Bragança'
+        esperado = 90000
+        
+        diretor = Funcionario(entrada_nome, '02/02/2000', entrada_salario)
+        diretor.decrescimo_salario()
+        resultado = diretor.salario
+        
+        assert resultado == esperado
